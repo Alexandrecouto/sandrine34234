@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L² Clean | Nettoyage Professionnel à Lyon</title>
+    <meta name="description" content="L² Clean Lyon : Entretien d'immeubles, bureaux, commerces et appartements. Devis gratuit.">
+    <style>
+        /* --- RESET ET STYLE DE BASE --- */
+        :root {
+            --primary-color: #0056b3; /* Bleu Professionnel */
+            --secondary-color: #00a8cc; /* Bleu Cyan Clean */
+            --text-color: #333;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --accent: #ff9800; /* Orange pour les actions */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { margin-bottom: 1rem; color: var(--primary-color); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER & MENU --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-img { height: 60px; width: auto; }
+
+        /* Menu */
+        .nav-menu { display: flex; gap: 30px; font-weight: 600; }
+        .nav-menu a:hover { color: var(--secondary-color); }
+        .nav-cta {
+            background-color: var(--primary-color);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .nav-cta:hover { background-color: #004494; }
+
+        /* --- HERO SECTION (MODIFIÉE : CENTRÉE AVEC IMAGE DE FOND) --- */
+        .hero {
+            /* Image de fond avec un filtre bleu par dessus pour lire le texte */
+            background: linear-gradient(rgba(0, 86, 179, 0.7), rgba(0, 86, 179, 0.6)), url('https://images.pexels.com/photos/9597685/pexels-photo-9597685.jpeg?_gl=1*fnvuj7*_ga*MTg4MzExNDU2MS4xNzYzNDk1MzMw*_ga_8JE65Q40S6*czE3NjM0OTUzMzAkbzEkZzEkdDE3NjM0OTU0MDgkajQyJGwwJGgw');
+            background-size: cover;
+            background-position: center;
+            /* Hauteur de la bannière */
+            height: 85vh; 
+            margin-top: 80px; /* Compensation header fixe */
+            
+            /* Centrage du contenu */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 { 
+            font-size: 3.5rem; 
+            line-height: 1.2; 
+            color: var(--white); /* Texte blanc sur fond image */
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p { 
+            font-size: 1.3rem; 
+            color: var(--white); 
+            margin-bottom: 40px; 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .btn-main {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 2px solid transparent;
+        }
+        .btn-main:hover { 
+            transform: translateY(-3px); 
+            background-color: #e68900; 
+        }
+
+        /* --- SERVICES --- */
+        .services { padding: 80px 0; background-color: var(--white); }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+
+        /* --- CONTACT FICHE --- */
+        .contact-section {
+            padding: 80px 0;
+            background-color: #0021bfb5;
+            color: var(--white);
+        }
+
+        .contact-wrapper {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: var(--white);
+            color: var(--text-color);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            flex: 1;
+            max-width: 500px;
+            min-width: 300px;
+        }
+
+        .contact-item {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .icon-circle {
+            background: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #222;
+            color: #aaa;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; } /* Simplification pour mobile */
+            .nav-container { justify-content: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="L² Clean Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu">
+                <a href="#">Accueil</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+                <a href="tel:0650962132" class="nav-cta">Devis Gratuit</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>L² Clean<br>L'Expertise Propreté à Lyon</h1>
+            <p>Partenaire de confiance des régies, entreprises et propriétaires.<br>Entretien d'immeubles, bureaux & gestion Airbnb.</p>
+            
+            <a href="#contact" class="btn-main">Demander mon devis comparatif</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Domaines d'Intervention</h2>
+                <p>Service complet de nettoyage pour professionnels et particuliers.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">🏢</span>
+                    <h3>Immeubles & Régies</h3>
+                    <p>Entretien des parties communes, halls, vitrerie, sortie de poubelles. Nous sommes l'allier des syndics.</p>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">💼</span>
+                    <h3>Bureaux & Commerces</h3>
+                    <p>Propreté de vos locaux professionnels : bureaux d'entreprise, PME, cabinets médicaux et salons de coiffure.</p>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">🏠</span>
+                    <h3>Appartements & Airbnb</h3>
+                    <p>Gestion nettoyage location courte durée. Rotation rapide, gestion du linge et consommables.</p>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">📉</span>
+                    <h3>Économies & Devis</h3>
+                    <p>Comparez nos tarifs. Nous optimisons vos coûts d'entretien sans sacrifier la qualité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title" style="color: white;">
+                <h2 style="color: white;">Contactez-nous</h2>
+                <p>Une réponse rapide et un devis gratuit sous 24h.</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-card">
+                    <h3 style="margin-bottom: 30px;">Vos Coordonnées</h3>
+                    
+                    <div class="contact-item">
+                        <div class="icon-circle">📞</div>
+                        <a href="tel:0650962132" style="font-weight: bold; font-size: 1.3rem;">06 50 96 21 32</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon-circle">✉️</div>
+                        <a href="mailto:contact@l2clean.fr">contact@l2clean-lyon.fr</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon-circle">📍</div>
+                        <span>Intervention sur tout Lyon & Agglomération</span>
+                    </div>
+
+                    <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+                        Disponible du Lundi au vendredi <br>
+                        Pour une urgence ou un devis gratuit.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 L² Clean - Nettoyage Professionnel Lyon.</p>
+            <p>SIRET : <span style="color: #fff;">[VOTRE NUMÉRO SIRET ICI]</span></p>
+        </div>
+    </footer>
+
+</body>
+</html>
