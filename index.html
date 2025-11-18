@@ -50,7 +50,7 @@
 
         .nav-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Important pour séparer le logo et le menu/bouton */
             align-items: center;
             width: 100%;
         }
@@ -68,7 +68,7 @@
         }
         .nav-cta:hover { background-color: #004494; }
 
-        /* Mobile Menu Toggle Button (Hidden by default) */
+        /* Mobile Menu Toggle Button (Hidden by default on desktop) */
         .menu-toggle {
             display: none;
             background: none;
@@ -77,22 +77,17 @@
             cursor: pointer;
             color: var(--primary-color);
             padding: 0;
-            /* Empêche le bouton d'interagir avec les éléments cachés derrière */
             z-index: 1001; 
         }
 
 
-        /* --- HERO SECTION (MODIFIÉE : CENTRÉE AVEC IMAGE DE FOND) --- */
+        /* --- HERO SECTION --- */
         .hero {
-            /* Image de fond avec un filtre bleu par dessus pour lire le texte */
             background: linear-gradient(rgba(0, 86, 179, 0.7), rgba(0, 86, 179, 0.6)), url('https://images.pexels.com/photos/9597685/pexels-photo-9597685.jpeg?_gl=1*fnvuj7*_ga*MTg4MzExNDU2MS4xNzYzNDk1MzMw*_ga_8JE65Q40S6*czE3NjM0OTUzMzAkbzEkZzEkdDE3NjM0OTU0MDgkajQyJGwwJGgw');
             background-size: cover;
             background-position: center;
-            /* Hauteur de la bannière */
             height: 85vh; 
-            margin-top: 80px; /* Compensation header fixe */
-            
-            /* Centrage du contenu */
+            margin-top: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -108,7 +103,7 @@
         .hero h1 { 
             font-size: 3.5rem; 
             line-height: 1.2; 
-            color: var(--white); /* Texte blanc sur fond image */
+            color: var(--white); 
             margin-bottom: 20px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
@@ -215,16 +210,17 @@
         /* --- MOBILE ADAPTATION (max-width: 768px) --- */
         @media (max-width: 768px) {
             
-            /* Afficher le bouton menu et cacher le menu initialement */
+            /* Afficher le bouton menu */
             .menu-toggle { 
                 display: block; 
             }
             
             .nav-menu { 
+                /* Style du menu déroulant mobile */
                 display: none; /* Masqué par défaut */
                 flex-direction: column;
                 position: absolute;
-                top: 80px; /* En dessous du header */
+                top: 80px; 
                 left: 0;
                 width: 100%;
                 background-color: var(--primary-color);
@@ -233,9 +229,9 @@
                 text-align: center;
             }
 
-            /* Cette classe doit être ajoutée/retirée par JavaScript pour ouvrir/fermer le menu */
+            /* CLASSE ACTIVÉE PAR JAVASCRIPT LORS DU CLIC */
             .nav-menu.active {
-                display: flex; /* Affiche le menu quand la classe est active */
+                display: flex; /* Affiche le menu */
             }
 
             .nav-menu a {
@@ -252,7 +248,6 @@
             .nav-cta {
                 margin-top: 15px; 
                 display: inline-block;
-                /* Reset du style pour qu'il s'intègre au menu bleu */
                 background-color: var(--accent);
                 padding: 8px 20px;
             }
@@ -278,7 +273,7 @@
                 <a href="tel:0650962132" class="nav-cta">Devis Gratuit</a>
             </nav>
             
-            <button class="menu-toggle" aria-label="Afficher le menu" id="menu-toggle">&#9776;</button>
+            <button class="menu-toggle" aria-label="Afficher le menu" id="menu-toggle" aria-expanded="false">&#9776;</button>
         </div>
     </header>
 
@@ -368,5 +363,20 @@
         </div>
     </footer>
 
-    </body>
+    <script>
+        // Récupère les deux éléments clés
+        const toggleButton = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('mobile-menu');
+
+        // Ajoute l'événement de clic
+        toggleButton.addEventListener('click', () => {
+            // Ajoute ou retire la classe 'active' sur le menu (définie dans le CSS)
+            navMenu.classList.toggle('active');
+            
+            // Mise à jour de l'accessibilité
+            const isExpanded = navMenu.classList.contains('active');
+            toggleButton.setAttribute('aria-expanded', isExpanded);
+        });
+    </script>
+</body>
 </html>
