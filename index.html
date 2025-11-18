@@ -57,7 +57,7 @@
 
         .logo-img { height: 60px; width: auto; }
 
-        /* Menu */
+        /* Menu Desktop */
         .nav-menu { display: flex; gap: 30px; font-weight: 600; }
         .nav-menu a:hover { color: var(--secondary-color); }
         .nav-cta {
@@ -67,6 +67,20 @@
             border-radius: 20px;
         }
         .nav-cta:hover { background-color: #004494; }
+
+        /* Mobile Menu Toggle Button (Hidden by default) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            padding: 0;
+            /* Empêche le bouton d'interagir avec les éléments cachés derrière */
+            z-index: 1001; 
+        }
+
 
         /* --- HERO SECTION (MODIFIÉE : CENTRÉE AVEC IMAGE DE FOND) --- */
         .hero {
@@ -198,10 +212,52 @@
             font-size: 0.9rem;
         }
 
-        /* --- MOBILE --- */
+        /* --- MOBILE ADAPTATION (max-width: 768px) --- */
         @media (max-width: 768px) {
-            .nav-menu { display: none; } /* Simplification pour mobile */
-            .nav-container { justify-content: center; }
+            
+            /* Afficher le bouton menu et cacher le menu initialement */
+            .menu-toggle { 
+                display: block; 
+            }
+            
+            .nav-menu { 
+                display: none; /* Masqué par défaut */
+                flex-direction: column;
+                position: absolute;
+                top: 80px; /* En dessous du header */
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            /* Cette classe doit être ajoutée/retirée par JavaScript pour ouvrir/fermer le menu */
+            .nav-menu.active {
+                display: flex; /* Affiche le menu quand la classe est active */
+            }
+
+            .nav-menu a {
+                color: var(--white);
+                padding: 12px 0;
+                width: 100%;
+                font-size: 1.1rem;
+            }
+
+            .nav-menu a:hover {
+                background-color: #004494;
+            }
+
+            .nav-cta {
+                margin-top: 15px; 
+                display: inline-block;
+                /* Reset du style pour qu'il s'intègre au menu bleu */
+                background-color: var(--accent);
+                padding: 8px 20px;
+            }
+            
+            /* Ajustement du contenu du Hero */
             .hero h1 { font-size: 2.2rem; }
             .hero p { font-size: 1.1rem; }
         }
@@ -214,12 +270,15 @@
             <a href="#" class="logo">
                 <img src="logo.png" alt="L² Clean Logo" class="logo-img">
             </a>
-            <nav class="nav-menu">
+            
+            <nav class="nav-menu" id="mobile-menu">
                 <a href="#">Accueil</a>
                 <a href="#services">Services</a>
                 <a href="#contact">Contact</a>
                 <a href="tel:0650962132" class="nav-cta">Devis Gratuit</a>
             </nav>
+            
+            <button class="menu-toggle" aria-label="Afficher le menu" id="menu-toggle">&#9776;</button>
         </div>
     </header>
 
@@ -285,7 +344,7 @@
 
                     <div class="contact-item">
                         <div class="icon-circle">✉️</div>
-                        <a href="mailto:contact@l2clean.fr">contact@l2clean-lyon.fr</a>
+                        <a href="mailto:contact@l2clean-lyon.fr">contact@l2clean-lyon.fr</a>
                     </div>
 
                     <div class="contact-item">
@@ -309,5 +368,5 @@
         </div>
     </footer>
 
-</body>
+    </body>
 </html>
