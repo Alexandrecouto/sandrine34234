@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L² Clean | Excellence & Propreté</title>
+    <meta name="description" content="Services de propreté haut de gamme à Lyon.">
+    
+    <link rel="icon" type="image/png" href="logo1.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-body: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #0f172a; /* Bleu nuit très sombre */
+            --accent: #d4af37; /* Doré mat subtil */
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.85);
+            --radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* --- HEADER ÉPURÉ (GLASSMORPHISM) --- */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.0); /* Transparent au début */
+            backdrop-filter: blur(0px);
+            transition: var(--transition);
+        }
+
+        /* Classe ajoutée via JS au scroll */
+        header.scrolled {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            padding: 15px 5%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Style du Logo Image */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 60px; /* Ajuste la taille ici si nécessaire */
+            width: auto;
+            display: block;
+        }
+
+        /* Navigation Desktop */
+        nav ul {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 1px;
+            background: var(--text-main);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after { width: 100%; }
+
+        .btn-cta {
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+            color: var(--white);
+        }
+
+        /* Menu Burger (Mobile) */
+        .burger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- HERO SECTION IMMERSIVE --- */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            background-color: #000; /* Fallback */
+            overflow: hidden;
+        }
+
+        /* Image de fond avec effet sombre */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Image de nettoyage/architecture épurée */
+            background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.6;
+            z-index: 0;
+            transition: transform 10s ease; /* Effet de zoom lent */
+        }
+        
+        .hero:hover .hero-bg { transform: scale(1.05); }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            color: var(--white);
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem); /* Taille adaptative */
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--white);
+            color: var(--primary);
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .btn-hero:hover {
+            transform: scale(1.05);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Petite souris qui indique le scroll */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        /* --- SERVICES (GRID MINIMALISTE) --- */
+        .services {
+            padding: 120px 10%;
+            background: var(--white);
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+        }
+
+        .subtitle {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 800;
+            max-width: 500px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--bg-body);
+            padding: 40px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            background: var(--white);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+            border-color: rgba(0,0,0,0.05);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- CONTACT (SPLIT SCREEN) --- */
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+            background: var(--primary);
+            color: var(--white);
+            padding: 100px 10%;
+            min-width: 350px;
+        }
+
+        .contact-form-container {
+            flex: 1;
+            background: var(--bg-body);
+            padding: 100px 10%;
+            min-width: 350px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-right: 20px;
+            color: var(--accent);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--white);
+            padding: 50px 5%;
+            text-align: center;
+            border-top: 1px solid #eee;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- ANIMATIONS & MEDIA QUERIES --- */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-10px) translateX(-50%);}
+            60% {transform: translateY(-5px) translateX(-50%);}
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; background: var(--white); }
+            /* Ajustement de la taille du logo sur mobile */
+            .logo-img { height: 45px; }
+
+            nav {
+                position: fixed;
+                top: 70px; left: 0; width: 100%;
+                background: var(--white);
+                padding: 20px;
+                flex-direction: column;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                transform: translateY(-150%); /* Caché par défaut */
+                transition: var(--transition);
+            }
+            nav.active { transform: translateY(0); }
+            nav ul { flex-direction: column; width: 100%; }
+            
+            .burger { display: block; color: var(--primary); }
+            .btn-cta { width: 100%; text-align: center; }
+            
+            .contact { flex-direction: column; }
+            .services { padding: 80px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <a href="#" class="logo-container">
+            <img src="logo1.png" alt="L² Clean Logo" class="logo-img">
+        </a>
+        
+        <div class="burger" id="burger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#services">Expertise</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="tel:0611864309" class="btn-cta">06 11 86 43 09</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>L'Art de la Propreté</h1>
+            <p>Une expertise technique au service des régies, bureaux et locations courtes durées. Discrétion et efficacité garanties.</p>
+            <a href="#contact" class="btn-hero">Demander un devis</a>
+        </div>
+        
+        <div class="scroll-indicator">
+            <i class="fa-solid fa-chevron-down" style="color:white; font-size: 20px;"></i>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <span class="subtitle">Nos Services</span>
+            <h2 class="title">Solutions sur-mesure</h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-regular fa-building service-icon"></i>
+                <h3>Immeubles & Régies</h3>
+                <p>Entretien des communs, vitrerie et gestion des déchets. Un suivi rigoureux pour votre copropriété.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-laptop service-icon"></i>
+                <h3>Bureaux & Tertiaire</h3>
+                <p>Création d'un environnement sain pour vos collaborateurs. Nettoyage des postes de travail et sanitaires.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-key service-icon"></i>
+                <h3>Conciergerie Airbnb</h3>
+                <p>Rotation rapide entre deux locataires. Gestion du linge et remise en état impeccable style hôtelier.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-info">
+            <span class="subtitle" style="color: rgba(255,255,255,0.7);">Parlons de votre projet</span>
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Prêt à collaborer ?</h2>
+            <p style="opacity: 0.8; line-height: 1.8;">Nous analysons vos besoins pour vous proposer une solution chiffrée sous 24h. Intervention sur tout le Grand Lyon.</p>
+            
+            <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h4 style="margin-bottom: 5px;">Téléphone</h4>
+                    <a href="tel:0611864309" style="font-size: 1.1rem; font-weight: 600;">06 11 86 43 09</a>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h4 style="margin-bottom: 5px;">Email</h4>
+                    <a href="mailto:contact@l2clean.fr">contact@l2clean.fr</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form-container">
+            <div style="width: 100%;">
+                <h3 style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;">Nous contacter</h3>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">
+                    Vous préférez être rappelé ? Laissez-nous un message.
+                </p>
+                <a href="mailto:contact@l2clean.fr" class="btn-cta" style="display: inline-block; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);">
+                    Envoyer un email maintenant
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 L² Clean. L'exigence de la propreté. <br> <!--<a href="#">Mentions Légales</a> <br>--> SIRET : 000 000 000 00000</p>
+    </footer>
+
+    <script>
+        // Menu Mobile Burger
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('nav-menu');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // Effet Glassmorphism au scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>

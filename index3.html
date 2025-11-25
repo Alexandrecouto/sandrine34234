@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L² Clean - L'Expertise Propreté à Lyon</title>
+    <meta name="description" content="Service de nettoyage professionnel à Lyon pour bureaux, régies et Airbnb. Devis gratuit et intervention rapide.">
+    
+    <link rel="icon" type="image/png" href="logo1.png">
+    <link rel="apple-touch-icon" href="logo1.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #1e3a66;
+            --dark-blue: #152c4e;
+            --accent-blue: #0099ff;
+            --cta-orange: #e87738;
+            --cta-orange-hover: #d66a2e;
+            --bg-grid: #f8f9fa;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+            --shadow-strong: 0 15px 40px rgba(30, 58, 102, 0.2);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            /* Empêche le header de cacher le titre de la section lors du scroll */
+            scroll-padding-top: 100px; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-grid);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- HEADER / NAVBAR --- */
+        header {
+            background: var(--white);
+            padding: 15px 5%; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-header img {
+            height: 55px; 
+            width: auto;  
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        /* Petit soulignement animé au survol */
+        nav a:not(.btn-nav)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--cta-orange);
+            transition: width 0.3s;
+        }
+
+        nav a:not(.btn-nav):hover::after {
+            width: 100%;
+        }
+
+        .btn-nav {
+            background-color: var(--cta-orange);
+            color: white !important; /* Force la couleur blanche */
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(232, 119, 56, 0.3);
+        }
+
+        .btn-nav:hover {
+            background-color: var(--cta-orange-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 85vh; /* Utiliser min-height pour éviter les coupures sur petits écrans */
+            background: url('https://sb.ecobnb.net/app/uploads/sites/7/2024/05/Lione-1170x490.png') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Gradient plus subtil pour la lisibilité */
+            background: linear-gradient(135deg, rgba(26, 59, 110, 0.95) 0%, rgba(26, 59, 110, 0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Petite animation d'apparition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-logo-center {
+            margin-bottom: 25px;
+        }
+        
+        .hero-logo-image {
+            width: 180px; 
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
+        }
+        
+        .brand-name {
+            display: inline-block;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .btn-hero {
+            display: inline-block; 
+            background-color: var(--cta-orange);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(232, 119, 56, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-hero:hover { 
+            transform: translateY(-4px);
+            background-color: var(--cta-orange-hover);
+            box-shadow: 0 8px 25px rgba(232, 119, 56, 0.6);
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services {
+            padding: 100px 5%;
+            background-color: var(--bg-grid);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Ligne décorative en haut de la carte */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--accent-blue);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: 0.3s;
+        }
+        
+        .card:hover .card-icon-wrapper {
+            background: var(--accent-blue);
+        }
+
+        .card i {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            transition: 0.3s;
+        }
+        
+        .card:hover i {
+            color: white;
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-section {
+            padding: 0 5% 100px 5%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            width: 100%;
+            max-width: 1100px;
+            border-radius: 20px;
+            padding: 60px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: var(--shadow-strong);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Cercle décoratif en arrière plan */
+        .contact-box::after {
+            content: '';
+            position: absolute;
+            width: 300px; height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            top: -100px;
+            right: -50px;
+        }
+
+        .contact-text {
+            flex: 1;
+            padding-right: 50px;
+            min-width: 300px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            color: var(--text-dark);
+            min-width: 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-item:last-child { 
+            margin-bottom: 0; 
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .contact-item i {
+            background-color: rgba(0, 153, 255, 0.1);
+            color: var(--accent-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+
+        .contact-info strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            color: var(--primary-blue);
+        }
+        .contact-info span, .contact-info a {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+        
+        .contact-info a:hover {
+            color: var(--cta-orange);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #999;
+            padding: 40px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border-top: 4px solid var(--accent-blue);
+        }
+
+        .footer-links a {
+            margin-left: 25px;
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3rem; }
+            .contact-box { padding: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            header { 
+                flex-direction: column; 
+                gap: 15px; 
+                padding: 10px 5%;
+            }
+            
+            nav ul { 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 15px;
+            }
+            
+            .btn-nav {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding-top: 120px; /* Pour compenser le header fixe */
+            }
+
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            
+            .contact-box { 
+                flex-direction: column; 
+                gap: 40px; 
+                padding: 30px; 
+                text-align: center;
+            }
+            
+            .contact-text { 
+                padding-right: 0; 
+                margin-bottom: 0;
+            }
+            
+            .contact-card {
+                width: 100%;
+                min-width: auto;
+                padding: 30px 20px;
+                text-align: left;
+            }
+
+            footer { 
+                flex-direction: column; 
+                gap: 20px; 
+                text-align: center; 
+            }
+            
+            .footer-links a { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo-header">
+            <img src="logo1.png" alt="L² CLEAN Logo">
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="tel:0611864309" class="btn-nav"><i class="fa-solid fa-phone"></i> Devis Gratuit</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-logo-center">
+                <img src="logo.png" alt="Logo L2 Clean" class="hero-logo-image">
+            </div>
+            <span class="brand-name">L² Clean &bull; Service Propreté & Efficacité</span>
+            <h1>L'Expertise Propreté<br>à Lyon et alentours</h1>
+            <p>Le partenaire de confiance des régies et entreprises. Entretien de bureaux, immeubles & gestion Airbnb. Intervention rapide et soignée.</p>
+            
+            <a href="#contact" class="btn-hero">Demander mon devis comparatif</a>
+        </div> 
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="section-title">Nos Domaines d'Intervention</h2>
+        <p class="section-subtitle">Des solutions de nettoyage sur-mesure adaptées à vos besoins professionnels.</p>
+        
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-regular fa-building"></i>
+                </div>
+                <h3>Immeubles & Régies</h3>
+                <p>Entretien complet des parties communes, gestion des containers poubelles et vitrerie pour copropriétés.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <h3>Bureaux & Commerces</h3>
+                <p>Nettoyage minutieux de vos espaces de travail pour garantir le bien-être et la productivité de vos équipes.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-house-chimney"></i>
+                </div>
+                <h3>Appartements & Airbnb</h3>
+                <p>Remise en état après travaux, nettoyage de fin de chantier et gestion complète des rotations locatives.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3>Économies & Devis</h3>
+                <p>Analyse de vos besoins pour des tarifs transparents, compétitifs et sans coûts cachés.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-box">
+            <div class="contact-text">
+                <h2>Une urgence ou un projet ?</h2>
+                <p>L² Clean se fait fort d'intervenir rapidement. Nos équipes sont formées pour respecter vos locaux et garantir une hygiène irréprochable.<br><br>
+                Nous intervenons sur tout <strong>Lyon et son agglomération</strong>.</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div class="contact-info">
+                        <strong>Appelez-nous</strong>
+                        <a href="tel:0611864309">06 11 86 43 09</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div class="contact-info">
+                        <strong>Envoyez un email</strong>
+                        <a href="mailto:contact@l2clean.fr">contact@l2clean.fr</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div class="contact-info">
+                        <strong>Zone d'intervention</strong>
+                        <span>Grand Lyon & alentours</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>© 2025 L² Clean - Expert Propreté &bull; SIRET : 000 000 000 00000</div>
+        
+        <div class="footer-links">
+            <a href="#">Mentions Légales</a>
+            <a href="#">Politique de confidentialité</a>
+        </div>
+    </footer>
+
+</body>
+</html>
